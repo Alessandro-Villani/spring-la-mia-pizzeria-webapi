@@ -20,13 +20,15 @@ public class AuthConfiguration {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	    
 		return 
-			http.authorizeHttpRequests(a -> a
+			http.csrf(c -> c.disable())
+				.authorizeHttpRequests(a -> a
 					.requestMatchers("/pizzas/{id}/special-offer/**").hasAuthority("ADMIN")
 					.requestMatchers("/pizzas/create").hasAuthority("ADMIN")
 					.requestMatchers("/pizzas/edit/**").hasAuthority("ADMIN")
 			        .requestMatchers("/pizzas/**").hasAnyAuthority("USER", "ADMIN")
 			        .requestMatchers("/ingredients/**").hasAuthority("ADMIN")
-			        .requestMatchers("/**").permitAll()
+			        .requestMatchers("/pizzas/store").permitAll()
+			        .requestMatchers("/**", "/api/**").permitAll()
 			).formLogin(f -> f.defaultSuccessUrl("/pizzas").permitAll()
 			).logout(l -> l.logoutSuccessUrl("/pizzas")
 			).build();

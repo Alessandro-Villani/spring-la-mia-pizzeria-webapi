@@ -83,9 +83,9 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		
 		System.out.println(pizze);
 		
-		SpecialOffer s1 = new SpecialOffer("under 18", LocalDate.now(), LocalDate.of(2023, 06, 07), 20, p1);
-		SpecialOffer s2 = new SpecialOffer("over 60", LocalDate.now(), LocalDate.of(2023, 06, 15), 30, p1);
-		SpecialOffer s3 = new SpecialOffer("2x1", LocalDate.now(), LocalDate.of(2023, 06, 12), 50, p2);
+		SpecialOffer s1 = new SpecialOffer("under 18", LocalDate.now(), LocalDate.of(2023, 07, 07), 20, p1);
+		SpecialOffer s2 = new SpecialOffer("over 60", LocalDate.now(), LocalDate.of(2023, 07, 15), 30, p1);
+		SpecialOffer s3 = new SpecialOffer("2x1", LocalDate.now(), LocalDate.of(2023, 07, 12), 50, p2);
 		SpecialOffer s4 = new SpecialOffer("special discount", LocalDate.now(), LocalDate.of(2023, 06, 25), 15, p4);
 		
 		specialOfferService.save(s1);
