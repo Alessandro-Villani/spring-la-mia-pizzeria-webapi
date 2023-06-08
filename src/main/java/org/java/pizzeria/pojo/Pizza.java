@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -55,7 +56,7 @@ public class Pizza {
 		
 		this(name, description, imageUrl, price);
 		
-		setIngredients2(ingredients);
+		setIngredients(ingredients);
 		
 	}
 
@@ -116,8 +117,8 @@ public class Pizza {
 		this.ingredients = ingredients;
 	}
 	
-
-	public void setIngredients2(Ingredient[] ingredient) {
+	@JsonSetter
+	public void setIngredients(Ingredient[] ingredient) {
 		
 		setIngredients(Arrays.asList(ingredient));
 	}

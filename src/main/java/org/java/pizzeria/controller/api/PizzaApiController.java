@@ -79,6 +79,14 @@ public class PizzaApiController {
 	@PutMapping("/pizzas/update")
 	public ResponseEntity<Pizza> updatePizza(@RequestBody Pizza pizza) {
 		
+		Optional<Pizza> referencedPizza = pizzaService.findById(pizza.getId());
+		
+		if(referencedPizza.isEmpty()) {
+			
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			
+		}
+		
 		pizza = pizzaService.save(pizza);
 		
 		return new ResponseEntity<>(pizza, HttpStatus.OK);	
