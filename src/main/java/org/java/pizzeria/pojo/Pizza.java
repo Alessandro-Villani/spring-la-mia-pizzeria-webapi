@@ -3,10 +3,11 @@ package org.java.pizzeria.pojo;
 import java.util.Arrays;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+    
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Pizza {
 	@Min(value = 0, message = "Il prezzo deve essere un valore positivo")
 	private Double price;
 	
-	@OneToMany(mappedBy = "pizza")
+	@OneToMany(mappedBy = "pizza", cascade = CascadeType.REMOVE)
 	@JsonManagedReference
 	private List<SpecialOffer> specialOffers;
 	
