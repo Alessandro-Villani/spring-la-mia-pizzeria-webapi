@@ -36,7 +36,7 @@ public class PizzaApiController {
 	@GetMapping("/pizzas")
 	public ResponseEntity<List<Pizza>> getAllPizza(@RequestParam(required = false) String name){
 		
-		if(!name.isBlank()) {
+		if(name != null && !name.isEmpty()) {
 			
 			List<Pizza> pizzaList = pizzaService.findByNameContaining(name);
 			return new ResponseEntity<>(pizzaList, HttpStatus.OK);

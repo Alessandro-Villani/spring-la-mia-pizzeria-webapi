@@ -38,6 +38,7 @@ public class Pizza {
 	private List<SpecialOffer> specialOffers;
 	
 	@ManyToMany
+	@JsonManagedReference
 	private List<Ingredient> ingredients;
 	
 	public Pizza() {}
