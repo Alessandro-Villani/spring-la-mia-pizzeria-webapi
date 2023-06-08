@@ -38,7 +38,6 @@ public class Pizza {
 	private List<SpecialOffer> specialOffers;
 	
 	@ManyToMany
-	@JsonManagedReference
 	private List<Ingredient> ingredients;
 	
 	public Pizza() {}
@@ -56,7 +55,7 @@ public class Pizza {
 		
 		this(name, description, imageUrl, price);
 		
-		setIngredients(ingredients);
+		setIngredients2(ingredients);
 		
 	}
 
@@ -117,8 +116,8 @@ public class Pizza {
 		this.ingredients = ingredients;
 	}
 	
-	@JsonIgnore
-	public void setIngredients(Ingredient[] ingredient) {
+
+	public void setIngredients2(Ingredient[] ingredient) {
 		
 		setIngredients(Arrays.asList(ingredient));
 	}
