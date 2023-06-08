@@ -9,7 +9,8 @@ export default {
     data() {
         return {
             pizze: [],
-            searchTerm: ''
+            searchTerm: '',
+            showId: -1
         };
     },
     methods: {
@@ -29,8 +30,12 @@ export default {
             axios.delete(baseApiUrl + 'pizzas/delete/' + id)
                 .then(res => {
                     this.fetchPizze();
+                    this.showId = -1;
                 })
                 .catch(e => console.log(e))
+        },
+        showSelectedPizza(id) {
+            this.showId = id
         }
     },
     mounted() {
@@ -43,7 +48,7 @@ export default {
 <template>
     <main class="container text-center">
         <h1 class="my-5">Pizzeria</h1>
-        <div class="d-flex justify-content-center">
+        <div v-if="showId === -1" class="d-flex justify-content-center">
             <div class="col-6">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Cerca pizza" aria-label="Recipient's username"
@@ -53,9 +58,10 @@ export default {
                 </div>
             </div>
         </div>
-        <RouterLink to="/create" class="btn btn-success mb-3">Crea pizza</RouterLink>
+        <RouterLink v-if="showId === -1" to="/create" class="btn btn-success mb-3">Crea pizza</RouterLink>
         <div class="row row-cols-3 justify-content-center">
-            <PizzaCard v-for="pizza in pizze" :pizza="pizza" @delete="deletePizza" />
+            <PizzaCard v-show="showId === -1 || showId === pizza.id" v-for="pizza in pizze" :pizza="pizza"
+                @delete="deletePizza" @show="showSelectedPizza" @no-show="showId = -1" />
         </div>
     </main>
 </template>
